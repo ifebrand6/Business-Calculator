@@ -11,8 +11,13 @@ class Display extends Component{
     }
     setcounter = (e)=> {
         let counter = this.state.counter;
-        this.setState({
-            counter: counter + parseFloat(e.target.value)
+        const input = parseFloat(e.target.value) 
+        this.setState(() => {
+            if (input < 0) {
+                return { counter: 0}
+            }else {
+                return { counter: (counter + input)}
+            }
         });
     }
     render(){

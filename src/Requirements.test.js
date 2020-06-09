@@ -27,9 +27,13 @@ describe('Element Testing', () => {
          expect(wrapper.find('#counter-value').text()).toBe('1')
          wrapper.find('#decrement-counter').simulate('click')
          expect(wrapper.find('#counter-value').text()).toBe('0')
+
     });
-    test('should disable decrement if counter is 0', () => {
-        
+    test('should disable decrement if counter is less than 0', () => {
+        wrapper.find('#decrement-counter').simulate('click')
+        expect(wrapper.find('#counter-value').text()).toBe('0')
+        wrapper.find('#decrement-counter').simulate('click')
+        expect(wrapper.find('#counter-value').text()).toBe('0')
     })
     
 });
