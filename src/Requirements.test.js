@@ -35,5 +35,10 @@ describe('Element Testing', () => {
         wrapper.find('#decrement-counter').simulate('click')
         expect(wrapper.find('#counter-value').text()).toBe('0')
     })
+    test('should render a text telling the user they can decrement value less than 0', () => {
+        // wrapper.find('#decrement-counter').simulate('click')
+        // expect(wrapper.find('#warn').text()).toContain('you cant below this')
+    })
+    
     
 });
