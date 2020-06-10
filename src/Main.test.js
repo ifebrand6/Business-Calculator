@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from './Main'
-import {  shallow } from 'enzyme';
+import {  mount } from 'enzyme';
 
 describe('Mock up layout testing', () => {
     let wrapper;
     beforeEach(()=> {
-         wrapper = shallow(<Layout/>)
+         wrapper = mount(<Layout/>)
     })
     test('should check that there are all necessary node element', () => {
         expect(wrapper.find('div#main').exists()).toBeTruthy()
