@@ -26,7 +26,7 @@ describe('Mock up layout testing', () => {
 })
 describe('Component and State state testing', () => {
     test('should select the default option', () => {
-        const wrapper = mount(<Unselected />);
+        const wrapper = mount(<CalculatorBody />);
         console.log(wrapper.debug())
         expect(wrapper.find('select').props().value).toBe('good')
     })
