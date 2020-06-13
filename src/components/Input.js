@@ -19,7 +19,7 @@ function Input(props) {
                 return null
             }
     }
-    const proift_and_loss_form =  <form action="" id="gain_form">  <input type="text" defaultValue={'d'}/> </form>
+    const proift_and_loss_form =  <form action="" id="gain_form">  <input id='cost_price' name="cost_price" value={props.cost_price} onChange={props.onChange}/>  <input id='selling_price' name="selling_price" value={props.selling_price}  onChange={props.onChange}/> </form>
     const notAvailable =  <div id="promise_form"><h3>Oops! this feature is still under construction try again.</h3></div>
     const renderForm = forValuator();
     return(

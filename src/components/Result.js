@@ -7,7 +7,7 @@ function Result(props) {
                 {'error_message'}
             </div>
             <p id="result_output">
-                {'result output'}
+                {props.result}
             </p>
             <div id="advise_links">
                 {'advise links'}

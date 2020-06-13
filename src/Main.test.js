@@ -77,34 +77,43 @@ describe('Specific form should be render base on the selected option', () => {
 })
 describe('Check State value for input and result', () => {
     let wrapper;
+    let sellingPriceInput;
+    let costPriceInput;
+    let resultOutput
     beforeEach(()=> {
-        wrapper = mount(<CalculatorBody/>)
+        wrapper = mount(<CalculatorBody />)
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
         wrapper.find('form#gain_form')
+        sellingPriceInput = wrapper.find('input#selling_price');
+        costPriceInput = wrapper.find('input#cost_price')
+        resultOutput = wrapper.find('p#result_output')
     })
     test('should check the default values for states, cost_price: 0,selling_price: 0, gain: 0 ', () => {
-        expect(wrapper.find('#cost_price').text()).toBe('0')
-        expect(wrapper.find('#selling_price').text()).toBe('0')
-        expect(wrapper.find('#profit').text()).toBe('0')
+        expect(costPriceInput.prop('value')).toBe(0)
+        expect(sellingPriceInput.prop('value')).toBe(0)
+        expect(resultOutput.text()).toBe('0')
     })
     test('should check that when cost_price: 1, selling_price: 1, gain: 0 ', () => {
-        //simulate input changes
-        expect(wrapper.find('#cost_price').text()).toBe('1')
-        expect(wrapper.find('#selling_price').text()).toBe('1')
-        expect(wrapper.find('#profit').text()).toBe('0')
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
+        expect(wrapper.find('#cost_price').prop('value')).toBe(1)
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
+        expect(wrapper.find('#selling_price').prop('value')).toBe(1)
+        expect(wrapper.find('p#result_output').text()).toBe('0')
     })
     test('should check that when cost_price: 2, selling_price: 3, gain: 1 ', () => {
-        //simulate input changes
-        expect(wrapper.find('#cost_price').text()).toBe('2')
-        expect(wrapper.find('#selling_price').text()).toBe('3')
-        expect(wrapper.find('#profit').text()).toBe('1')
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 2}});
+        expect(wrapper.find('#cost_price').prop('value')).toBe(2)
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 3}})
+        expect(wrapper.find('#selling_price').prop('value')).toBe(3)
+        expect(wrapper.find('p#result_output').text()).toBe('1')
 
     })
     test('should check that when cost_price: 3, selling_price: 2, gain: -1 ', () => {
-        //simulate input changes
-        expect(wrapper.find('#cost_price').text()).toBe('3')
-        expect(wrapper.find('#selling_price').text()).toBe('2')
-        expect(wrapper.find('#profit').text()).toBe('-1')
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 3}});
+        expect(wrapper.find('#cost_price').prop('value')).toBe(3)
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 2}})
+        expect(wrapper.find('#selling_price').prop('value')).toBe(2)
+        expect(wrapper.find('p#result_output').text()).toBe('-1')
     })
     
 })
