@@ -12,11 +12,11 @@ function UnSelected(props) {
 function BusinessOperationLists(props) {
 return(
     <select name="select" value={props.value} onChange={props.onChange}>
-        <option value="">Select Operation</option>
-        <option value="bad" onPointerEnter={()=>{console.log("I have been click")}}>Profit & Loss Calculator</option>
-        <option value="bad">Retail Price</option>
-        <option value="bad">After Tax Return</option>
-        <option value="bad">Net Gross Profit (Fiscal Year)</option>
+        <option>Select Operation</option>
+        <option>Profit & Loss Calculator</option>
+        <option>Retail Price</option>
+        <option>After Tax Return</option>
+        <option>Net Gross Profit (Fiscal Year)</option>
     </select> 
 )
 }

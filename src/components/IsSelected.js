@@ -3,6 +3,7 @@ import Input from './Input'
 import Result from './Result'
 
 class IsSelected extends React.Component {
+ 
     render(){
     const case_input = this.props.formType
     return (

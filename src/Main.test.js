@@ -3,6 +3,8 @@ import Layout from './Main'
 import Unselected from './components/UnSelected'
 import {  mount } from 'enzyme';
 import CalculatorBody from './components/CalculatorBody';
+import Input from './components/Input';
+import IsSelected from './components/IsSelected';
 
 // describe('Mock up layout testing', () => {
 //     let wrapper;
@@ -59,13 +61,19 @@ describe('Specific form should be render base on the selected option', () => {
     let wrapper;
     beforeEach(()=> {
         wrapper = mount(<CalculatorBody/>)
-        wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
     })
 
     test('test that when *Profit & Loss is selected; form with id = "gain_form" is rendered to selected div ', () => {
-        expect(wrapper.find('form#gain_form').exists()).toBeTruthy()
+        wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
+        expect(wrapper.find('form#gain_form').exists()).toEqual(true);
+        
 
     })
+    test('should check other form are selected the situable form is rendered', () => {
+        wrapper.find('select').simulate('change', {target: {value: 'Retail Price'}})
+        expect(wrapper.find('div#promise_form').exists()).toEqual(true);    
+    })
+    
 })
 describe('Check State value for input and result', () => {
     let wrapper;
