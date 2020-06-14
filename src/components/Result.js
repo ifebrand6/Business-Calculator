@@ -44,15 +44,13 @@ function Result(props) {
     const adviseLink = adviseLinks()
     let ssd = anchorme('dfdd.com')
     // console.log(typeof(ssd))
-    
     return (
         <div id="result">
-        <div id="error_message">
+        <div id="error_message" hidden>
                 {'error_message'}   
             </div>
-            <p id="result_output">
+            <p id="result_output" hidden>
                 {props.result}
-                {}
             </p>
             <p id="betterOutput">
                 {resultOutput}
