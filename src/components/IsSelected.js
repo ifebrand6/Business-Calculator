@@ -8,18 +8,15 @@ class IsSelected extends React.Component {
         this.state = { 
             cost_price: 0,
             selling_price: 0,
-            result: 0  
+            result: 0 , //remove this
+            error_message: '' 
         }
     }
     handleOnChange = (e)=> {
-        this.setState({ [e.target.name]: e.target.value });
-        // const cost_price = this.state.cost_price;
-        // const selling_price = this.state.selling_price;
-        // const calculateProfit = ()=>{
-        //     return (selling_price - cost_price);
-        //      console.log("Sp: "+ typeof(selling_price) + " >> CP: "+ typeof(cost_price)) 
-        // }
-        // this.setState({ result: calculateProfit() });
+        const input = e.target.value;
+        this.setState({     
+            [e.target.name]: input
+        });
     }
    
     render(){
