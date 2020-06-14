@@ -6,5 +6,4 @@ function Layout(props) {
        <Main/>
     )
 }
-
 export default Layout;
