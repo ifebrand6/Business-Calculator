@@ -119,44 +119,59 @@ describe('Check State value for input and result', () => {
 })
 describe('Render better user interaction for output result', () => {
     let wrapper;
+    let sellingPriceInput;
+    let costPriceInput;
     beforeEach(()=> {
-        wrapper = mount(<CalculatorBody/>)
+        wrapper = mount(<CalculatorBody />)
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
         wrapper.find('form#gain_form')
+        sellingPriceInput = wrapper.find('input#selling_price');
+        costPriceInput = wrapper.find('input#cost_price')
     })
     test('render "you made profit one naira" when selling_price: 2 cost_price: 1', () => {
-        //simulate the input changes in form
-        expect(wrapper.find('p#result_output').text()).toContain('you made profit one naira')
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 2}})
+        expect(wrapper.find('p#betterOutput').text()).toContain('you made profit one naira')
         
     })
-    test('render "you donot make any profit" when selling_price: 2 cost_price: 1', () => {
-        //simulate the input changes in form
-        expect(wrapper.find('p#result_output').text()).toContain('"you donot make any profit')
+    test('render "you donot make any profit" when selling_price: 1 cost_price: 1', () => {
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
+        expect(wrapper.find('p#betterOutput').text()).toContain('you donot make any profit')
     })
-    test('render "your made a loss of one naira" when selling_price: 2 cost_price: 1', () => {
-        //simulate the input changes in form
-        expect(wrapper.find('p#result_output').text()).toContain('your made a loss of one naira')
+    test('render "your made a loss of one naira" when selling_price: 1 cost_price: 2', () => {
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 2}});
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
+        expect(wrapper.find('p#betterOutput').text()).toContain('your made a loss of one naira')
     })
     
 })
 describe('Render advise links for gain outcome', () => {
     let wrapper;
+    let sellingPriceInput;
+    let costPriceInput;
     beforeEach(()=> {
-        wrapper = mount(<CalculatorBody/>)
+        wrapper = mount(<CalculatorBody />)
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
         wrapper.find('form#gain_form')
+        sellingPriceInput = wrapper.find('input#selling_price');
+        costPriceInput = wrapper.find('input#cost_price')
     })
     test('render "www.whattodoafteragreatsales.com" when selling_price: 2 cost_price: 1', () => {
-        //simulate the input changes in form
-        expect(wrapper.find('div#advise_links').text()).toContain('"www.whattodoafteragreatsales.com')
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 2}})
+        expect(wrapper.find('div#advise_links').text()).toContain('www.whattodoafteragreatsales.com')
 
     })  
-    test('render "www.bootsales.com" when selling_price: 2 cost_price: 1', () => {
-        //simulate the input changes in form
+    test('render "www.bootsales.com" when selling_price: 1 cost_price: 2', () => {
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 2}});
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
         expect(wrapper.find('div#advise_links').text()).toContain('www.bootsales.com')
     })
-    test('render "www.gettingahead.com" when selling_price: 2 cost_price: 1', () => {
-        //simulate the input changes in form
+    test('render "www.gettingahead.com" when selling_price: 1 cost_price: 1', () => {
+        console.log(wrapper.debug())
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
         expect(wrapper.find('div#advise_links').text()).toContain('www.gettingahead.com')
     })
 })
