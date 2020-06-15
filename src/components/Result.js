@@ -1,13 +1,12 @@
 import React from 'react';
-import anchorme from "anchorme";
 
 function Result(props) {
     const adviseLinks = ()=>{
         
         const result = props.result
-        const balanceLink = <span>www.gettingahead.com</span>
-        const lossLink = <span>www.bootsales.com"</span>
-        const profitLink = <span>www.whattodoafteragreatsales.com</span>
+        const balanceLink = <span><a href="http://www.gettingahead.com<" target="_blank" rel="noopener noreferrer">www.gettingahead.com</a></span>
+        const lossLink = <span><a href="http://www.gettingahead.com" target="_blank" rel="noopener noreferrer">www.bootsales.com</a></span>
+        const profitLink = <span><a href="http://www.whattodoafteragreatsales.co" target="_blank" rel="noopener noreferrer">www.whattodoafteragreatsales.co</a></span>
         if (result > 0) {
             return profitLink
             } else if (result <= -1) {
@@ -42,24 +41,21 @@ function Result(props) {
     }
     const resultOutput= resultOutputs()
     const adviseLink = adviseLinks()
-    let ssd = anchorme('dfdd.com')
-    // console.log(typeof(ssd))
     return (
-        <div id="result">
-        <div id="error_message" hidden>
+        <div className="insurance-type d-flex align-items-center">
+        <img src="images/tick.png" alt="#" />
+        <div className="insurance-type_title">
+            <div id="error_message" hidden>
                 {'error_message'}   
             </div>
             <p id="result_output" hidden>
                 {props.result}
             </p>
-            <p id="betterOutput">
-                {resultOutput}
-            </p>
-            <div id="advise_links">
-            {adviseLink}
-            <p>{ssd}</p>
-            </div>
+            <h6 id="betterOutput">{resultOutput}</h6>
+            <p>Click on the link below to seek for more advise</p>
+            <p id="advise_links">{adviseLink}</p>
         </div>
+    </div>
     )
 }
 export default Result;

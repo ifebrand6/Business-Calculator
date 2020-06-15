@@ -20,19 +20,60 @@ class CalculatorBody extends React.Component {
             remove_selected: false
         });
     }
-    // handleSelectedOption = (e) => {
-    //     console.log("attempted removing unselected")
-    //     this.setState({ remove_unselected: true });
-    //     console.log("attempted removing unselected")
-    // }
+    resetCalculator = (e) =>{
+        this.setState({ 
+            typeOfBusinessOperation: 'Select Operation',
+            remove_unselected: false,
+            remove_selected: true
+          });
+    }
     render(){
         const unSelected = this.state.remove_unselected ? null : <UnSelected value={this.state.typeOfBusinessOperation} onChange={this.handleOnchange} />
-        const selected = this.state.remove_selected ? null :  <IsSelected formType={this.state.typeOfBusinessOperation}/>
+        const selected = this.state.remove_selected ? null :  <IsSelected formType={this.state.typeOfBusinessOperation} onClick={this.resetCalculator}/>
+        const headerDescriptionValuator = ()=> {
+            const title = this.state.typeOfBusinessOperation
+            switch (title) {
+                case 'Profit & Loss Calculator':
+                    return 'Evalute your business gains' 
+                case 'Retail Price':
+                    return 'Get the minimuim retail price for your product'
+                case 'After Tax Return':
+                    return 'Calculate your profit after tax deduction'
+                case 'Net Gross Profit (Fiscal Year)':
+                    return 'Calculate the profit for the year'
+                default:
+                    return ''
+                }
+        }
+        const headerValuator = ()=>{
+            const title = this.state.typeOfBusinessOperation;
+            if (title === 'Select Operation') {
+                return 'Business Calculator'
+            } else {
+                return title
+            }
+        }
     return(
         <div id="cal_body">
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="center-title">
+                        <h2 id="Lorem_Ipsum">{headerValuator()}</h2>
+                        <p>{headerDescriptionValuator()}</p>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+            <div className="col-md-6">
+            <div className="content-box content-box1">
             {unSelected}
             {selected}
+            </div>
+            </div>
+            <div className="col-md-6">
             <SideBar />
+            </div>
+            </div>
         </div>
     )
 }
