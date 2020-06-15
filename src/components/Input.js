@@ -15,8 +15,15 @@ function Input(props) {
                 return null
             }
     }
-    const proift_and_loss_form =  <form action="" id="gain_form"> <label htmlFor="cost_price">Enter cost price: </label>  <input type="number" id='cost_price' name="cost_price" value={props.cost_price} onChange={props.onChange}/>  <br/><label htmlFor="selling price">Enter selling price: </label><input type="number" id='selling_price' name="selling_price" value={props.selling_price}  onChange={props.onChange}/> </form>
-    const notAvailable =  <div id="promise_form"><h3>Oops! this feature is still under construction try again.</h3></div>
+    const proift_and_loss_form =    <div  id={props.case_input} >
+    <div className="form-group">
+        <input type="number" className="form-control" placeholder="Enter Cost price *" id='cost_price' name="cost_price" value={props.cost_price} onChange={props.onChange}/>
+    </div>
+    <div className="form-group">
+        <input type="number" className="form-control" placeholder="`Enter Selling Price *" id='selling_price' name="selling_price" value={props.selling_price}  onChange={props.onChange}/>
+    </div>
+</div>
+    const notAvailable =  <div id="promise_form"><h3>Oops! this feature is still under construction try again.</h3> <br/><img src="images/inprogress/mp4" alt=""/></div>
     const renderForm = forValuator();
     return(
         <div id={props.case_input}>

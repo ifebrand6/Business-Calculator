@@ -29,8 +29,12 @@ class IsSelected extends React.Component {
     const resultOutput = this.state.remove_result ? null : <Result result={result} />
     return (
     <div id="iselected">
+        <div className="col-md-12">
         <Input case_input={case_input} cost_price={cost_price} selling_price={selling_price} onChange={this.handleOnChange}/>
+        </div>
         {resultOutput}
+        <br/>
+        <button className="btn-dark" onClick={this.props.onClick}>Cancel</button>
     </div>
     );
 }
