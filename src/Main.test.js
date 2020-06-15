@@ -79,19 +79,19 @@ describe('Check State value for input and result', () => {
     let wrapper;
     let sellingPriceInput;
     let costPriceInput;
-    let resultOutput
     beforeEach(()=> {
         wrapper = mount(<CalculatorBody />)
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
         wrapper.find('form#gain_form')
         sellingPriceInput = wrapper.find('input#selling_price');
         costPriceInput = wrapper.find('input#cost_price')
-        resultOutput = wrapper.find('p#result_output')
     })
     test('should check the default values for states, cost_price: 0,selling_price: 0, gain: 0 ', () => {
-        expect(costPriceInput.prop('value')).toBe(0)
-        expect(sellingPriceInput.prop('value')).toBe(0)
-        expect(resultOutput.text()).toBe('0')
+        costPriceInput.simulate('change', {target: {name: 'cost_price',value: 0}});
+        sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 0}})
+        expect(wrapper.find('#cost_price').prop('value')).toBe(0)
+        expect(wrapper.find('#selling_price').prop('value')).toBe(0)
+        expect(wrapper.find('p#result_output').text()).toBe('0')
     })
     test('should check that when cost_price: 1, selling_price: 1, gain: 0 ', () => {
         costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
