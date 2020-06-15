@@ -58,7 +58,7 @@ class CalculatorBody extends React.Component {
             <div className="row">
                 <div className="col-md-12">
                     <div className="center-title">
-                        <h2 id="Lorem_Ipsum">{headerValuator()}</h2>
+                        <h2 id="App">{headerValuator()}</h2>
                         <p>{headerDescriptionValuator()}</p>
                     </div>
                 </div>

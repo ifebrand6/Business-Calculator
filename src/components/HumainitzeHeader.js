@@ -10,8 +10,8 @@ function HumainitzeHeader(props) {
                         <p>Version 1.0</p>
                         <h1>All Business Operation<br/>in One Click </h1>
                         <div className="add-btn pricing-btn_wrap">
-                            <a href="#Lorem_Ipsum"
-                                className="btn btn-success">Go to Calc</a>
+                            <a href="#App"
+                                className="btn btn-success">Go to App</a>
                         </div>
                     </div>
                 </div>
