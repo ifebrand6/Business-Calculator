@@ -1,6 +1,5 @@
 import React from 'react';
 import SideBar from './SideBar'
-import HumainitzeHeader from './HumainitzeHeader'
 import IsSelected from './IsSelected'
 import UnSelected from './UnSelected'
 
@@ -31,10 +30,9 @@ class CalculatorBody extends React.Component {
         const selected = this.state.remove_selected ? null :  <IsSelected formType={this.state.typeOfBusinessOperation}/>
     return(
         <div id="cal_body">
-            <SideBar />
-            <HumainitzeHeader />
             {unSelected}
             {selected}
+            <SideBar />
         </div>
     )
 }
