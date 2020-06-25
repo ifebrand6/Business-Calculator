@@ -22,7 +22,7 @@ import IsSelected from './components/IsSelected';
 //         expect(wrapper.find('div#error_message').exists()).toBeTruthy()
 //         expect(wrapper.find('div#result').exists()).toBeTruthy()
 //         expect(wrapper.find('p#result_output').exists()).toBeTruthy()
-//         expect(wrapper.find('div#advise_links').exists()).toBeTruthy()
+//         expect(wrapper.find('p#advise_links').exists()).toBeTruthy()
 //     })
     
 // })
@@ -65,13 +65,13 @@ describe('Specific form should be render base on the selected option', () => {
 
     test('test that when *Profit & Loss is selected; form with id = "gain_form" is rendered to selected div ', () => {
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
-        expect(wrapper.find('form#gain_form').exists()).toEqual(true);
+        expect(wrapper.find('div#gain_form').exists()).toEqual(true);
         
 
     })
     test('should check other form are selected the situable form is rendered', () => {
         wrapper.find('select').simulate('change', {target: {value: 'Retail Price'}})
-        expect(wrapper.find('div#promise_form').exists()).toEqual(true);    
+        expect(wrapper.find('div#retail_price_form').exists()).toEqual(true);    
     })
     
 })
@@ -82,7 +82,7 @@ describe('Check State value for input and result', () => {
     beforeEach(()=> {
         wrapper = mount(<CalculatorBody />)
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
-        wrapper.find('form#gain_form')
+        wrapper.find('div#gain_form')
         sellingPriceInput = wrapper.find('input#selling_price');
         costPriceInput = wrapper.find('input#cost_price')
     })
@@ -124,25 +124,25 @@ describe('Render better user interaction for output result', () => {
     beforeEach(()=> {
         wrapper = mount(<CalculatorBody />)
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
-        wrapper.find('form#gain_form')
+        wrapper.find('div#gain_form')
         sellingPriceInput = wrapper.find('input#selling_price');
         costPriceInput = wrapper.find('input#cost_price')
     })
     test('render "you made profit one naira" when selling_price: 2 cost_price: 1', () => {
         costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
         sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 2}})
-        expect(wrapper.find('p#betterOutput').text()).toContain('you made profit one naira')
+        expect(wrapper.find('h6#betterOutput').text()).toContain('you made profit one naira')
         
     })
     test('render "you donot make any profit" when selling_price: 1 cost_price: 1', () => {
         costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
         sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
-        expect(wrapper.find('p#betterOutput').text()).toContain('you donot make any profit')
+        expect(wrapper.find('h6#betterOutput').text()).toContain('you donot make any profit')
     })
     test('render "your made a loss of one naira" when selling_price: 1 cost_price: 2', () => {
         costPriceInput.simulate('change', {target: {name: 'cost_price',value: 2}});
         sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
-        expect(wrapper.find('p#betterOutput').text()).toContain('your made a loss of one naira')
+        expect(wrapper.find('h6#betterOutput').text()).toContain('your made a loss of one naira')
     })
     
 })
@@ -153,26 +153,67 @@ describe('Render advise links for gain outcome', () => {
     beforeEach(()=> {
         wrapper = mount(<CalculatorBody />)
         wrapper.find('select').simulate('change', {target: {value: 'Profit & Loss Calculator'}})
-        wrapper.find('form#gain_form')
+        wrapper.find('div#gain_form')
         sellingPriceInput = wrapper.find('input#selling_price');
         costPriceInput = wrapper.find('input#cost_price')
     })
     test('render "www.whattodoafteragreatsales.com" when selling_price: 2 cost_price: 1', () => {
         costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
         sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 2}})
-        expect(wrapper.find('div#advise_links').text()).toContain('www.whattodoafteragreatsales.com')
+        expect(wrapper.find('p#advise_links').text()).toContain('www.whattodoafteragreatsales.com')
 
     })  
     test('render "www.bootsales.com" when selling_price: 1 cost_price: 2', () => {
         costPriceInput.simulate('change', {target: {name: 'cost_price',value: 2}});
         sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
-        expect(wrapper.find('div#advise_links').text()).toContain('www.bootsales.com')
+        expect(wrapper.find('p#advise_links').text()).toContain('www.bootsales.com')
     })
     test('render "www.gettingahead.com" when selling_price: 1 cost_price: 1', () => {
-        console.log(wrapper.debug())
         costPriceInput.simulate('change', {target: {name: 'cost_price',value: 1}});
         sellingPriceInput.simulate('change',{target: {name: 'selling_price',value: 1}})
-        expect(wrapper.find('div#advise_links').text()).toContain('www.gettingahead.com')
+        expect(wrapper.find('p#advise_links').text()).toContain('www.gettingahead.com')
     })
 })
+describe('Retail Price Unit Test', () => {
+    let wrapper;
+    let over_head_cost;
+    let admin_expenses;
+    let production_cost;
+    let num_of_unit_product;
+    let profit_margin;
+    beforeEach(()=> {
+        wrapper = mount(<CalculatorBody />)
+        wrapper.find('select').simulate('change', {target: {value: 'Retail Price'}})
+        wrapper.find('div#retail_price_form')
+        over_head_cost = wrapper.find('input#over_head_cost');
+        admin_expenses = wrapper.find('input#admin_expenses');
+        production_cost = wrapper.find('input#production_cost')
+        num_of_unit_product = wrapper.find('input#num_of_unit_product')
+        profit_margin = wrapper.find('input#profit_margin')
+    })
+    test('should check that when retail calculator is selected it renders retail calculator', () => {
+        expect(wrapper.find('div#retail_price_form').exists()).toEqual(true);    
+    })
+    test('should when  over_head_cost is 1,admin_expenses is 1, production_cost is 1,num_of_unit_product is 1, profit_margin is 1, RESULT OUTPUT = 8', () => {
+        wrapper.find('input#over_head_cost').simulate('change', {target: {name: 'over_head_cost',value: 1}});
+        wrapper.find('input#admin_expenses').simulate('change', {target: {name: 'admin_expenses',value: 1}});
+        wrapper.find('input#production_cost').simulate('change', {target: {name: 'production_cost',value: 1}});
+        wrapper.find('input#num_of_unit_product').simulate('change', {target: {name: 'num_of_unit_product',value: 1}});
+        wrapper.find('input#profit_margin').simulate('change', {target: {name: 'profit_margin',value: 1}});
+        console.log(wrapper.debug())
+        expect(wrapper.find('p#result_output').text()).toBe('8')
 
+    })
+    test('should when  over_head_cost is 1,admin_expenses is 3, production_cost is 2,num_of_unit_product is 100, profit_margin is 10, RESULT OUTPUT = 24 ', () => {
+        over_head_cost.simulate('change', {target: {name: 'over_head_cost',value: 1}});
+        admin_expenses.simulate('change', {target: {name: 'admin_expenses',value: 3}});
+        production_cost.simulate('change', {target: {name: 'production_cost',value: 2}});
+        num_of_unit_product.simulate('change', {target: {name: 'num_of_unit_product',value: 100}});
+        profit_margin.simulate('change', {target: {name: 'profit_margin',value: 10}});
+        expect(wrapper.find('p#result_output').text()).toBe(24)
+
+    })
+    
+    
+    
+})
