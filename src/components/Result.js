@@ -8,7 +8,7 @@ function Result(props) {
             case 'Retail Price':
                 return retailPriceResult
             case 'After Tax Return':
-                return notAvailable
+                return taxReturnResult
             case 'Net Gross Profit (Fiscal Year)':
                 return notAvailable
             default:
@@ -77,6 +77,12 @@ function Result(props) {
 const retailPriceResult = <div>
     <p id="result_output">
     {props.retailResult}
+    </p>
+</div>
+
+const taxReturnResult = <div>
+    <p id="result_output">
+        {props.taxReturnResult}
     </p>
 </div>
 

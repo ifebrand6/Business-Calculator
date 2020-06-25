@@ -174,7 +174,7 @@ describe('Render advise links for gain outcome', () => {
         expect(wrapper.find('p#advise_links').text()).toContain('www.gettingahead.com')
     })
 })
-describe('Retail Price Unit Test', () => {
+describe('RETAIL PRICE CALCULATOR', () => {
     let wrapper;
     let over_head_cost;
     let admin_expenses;
@@ -200,20 +200,41 @@ describe('Retail Price Unit Test', () => {
         wrapper.find('input#production_cost').simulate('change', {target: {name: 'production_cost',value: 1}});
         wrapper.find('input#num_of_unit_product').simulate('change', {target: {name: 'num_of_unit_product',value: 1}});
         wrapper.find('input#profit_margin').simulate('change', {target: {name: 'profit_margin',value: 1}});
-        console.log(wrapper.debug())
         expect(wrapper.find('p#result_output').text()).toBe('8')
 
     })
-    test('should when  over_head_cost is 1,admin_expenses is 3, production_cost is 2,num_of_unit_product is 100, profit_margin is 10, RESULT OUTPUT = 24 ', () => {
+    test('should check that over_head_cost is 1,admin_expenses is 3, production_cost is 2,num_of_unit_product is 100, profit_margin is 10, RESULT OUTPUT = 24 ', () => {
         over_head_cost.simulate('change', {target: {name: 'over_head_cost',value: 1}});
         admin_expenses.simulate('change', {target: {name: 'admin_expenses',value: 3}});
         production_cost.simulate('change', {target: {name: 'production_cost',value: 2}});
         num_of_unit_product.simulate('change', {target: {name: 'num_of_unit_product',value: 100}});
         profit_margin.simulate('change', {target: {name: 'profit_margin',value: 10}});
-        expect(wrapper.find('p#result_output').text()).toBe(24)
+        expect(wrapper.find('p#result_output').text()).toBe('20.12')
 
     })
     
     
-    
+})
+describe('After Tax Calculator', () => {
+    let wrapper;
+    let after_tax_return;
+    let tax_rate;
+    beforeEach(()=> {
+        wrapper = mount(<CalculatorBody />)
+        wrapper.find('select').simulate('change', {target: {value: 'After Tax Return'}})
+        wrapper.find('div#tax_return_form')
+        after_tax_return = wrapper.find('input#after_tax_return');
+        tax_rate = wrapper.find('input#tax_rate')
+    });
+    test('should check that after tax calculator is rendered', () => {
+        expect(wrapper.find('div#tax_return_form').exists()).toEqual(true);    
+    })
+    test('check that when after_tax_return is 1, tax_rate is 1, the RESULT OUTPUT is ', () => {
+        after_tax_return.simulate('change', {target: {name: 'after_tax_return',value: 1}});
+        tax_rate.simulate('change',{target: {name: 'tax_rate',value: 1}})
+        console.log(wrapper.debug())
+        expect(wrapper.find('p#result_output').text()).toBe('2')
+
+    })  
+
 })

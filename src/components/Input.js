@@ -8,7 +8,7 @@ function Input(props) {
             case 'Retail Price':
                 return retail_price_form
             case 'After Tax Return':
-                return notAvailable
+                return tax_return_form
             case 'Net Gross Profit (Fiscal Year)':
                 return notAvailable
             default:
@@ -48,6 +48,16 @@ function Input(props) {
         </fieldset>
     </div>
 
+    const tax_return_form = <div id="tax_return_form">
+        <fieldset>
+            <label htmlFor="after_tax_return">After Tax Return</label>
+            <input type="number" className="form-control" placeholder="Enter After Tax Return Rate *" id='after_tax_return' name="after_tax_return" value={props.after_tax_return} onChange={props.onChange}/>
+        </fieldset>
+        <fieldset>
+            <label htmlFor="after_tax_return">Tax Rate</label>
+            <input type="number" className="form-control" placeholder="Enter Tax Rate *" id='tax_rate' name="tax_rate" value={props.tax_rate} onChange={props.onChange}/>
+        </fieldset>
+    </div>
     const notAvailable =  <div id="promise_form"><h3>Oops! this feature is still under construction try again.</h3> <br/><img src="images/inprogress/mp4" alt=""/></div>
     const renderForm = forValuator();
     return(
